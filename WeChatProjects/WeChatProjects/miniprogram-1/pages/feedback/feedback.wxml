@@ -1,0 +1,55 @@
+<!--pages/feedback/feedback.wxml-->
+
+<view class="container">
+
+  <!-- 反馈类型 -->
+  <view class="form-item">
+    <view class="item-label">反馈类型 <text class="required">*</text></view>
+    <view class="picker" bindtap="onTypeChange">
+      {{selectedType || '请选择反馈类型'}}
+      <text class="arrow">▼</text>
+    </view>
+  </view>
+
+  <!-- 反馈内容 -->
+  <view class="form-item">
+    <view class="item-label">反馈内容 <text class="required">*</text></view>
+    <textarea 
+      class="feedback-textarea" 
+      placeholder="请详细描述您的问题或建议..."
+      maxlength="500"
+      bindinput="onContentInput"
+      value="{{content}}"
+    />
+    <view class="char-count">{{content.length}}/500</view>
+  </view>
+
+  <!-- 上传图片 -->
+  <view class="form-item">
+    <view class="item-label">上传图片（可选）</view>
+    <view class="image-list">
+      <view class="image-item" wx:for="{{imageList}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}"></image>
+        <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+      </view>
+      <view class="add-image" wx:if="{{imageList.length < 3}}" bindtap="chooseImage">
+        <text>+</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="form-item">
+    <view class="item-label">联系方式（可选）</view>
+    <input 
+      class="contact-input" 
+      placeholder="手机号/微信号，方便我们联系您"
+      bindinput="onContactInput"
+      value="{{contact}}"
+    />
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="submitFeedback">提交反馈</button>
+
+</view>

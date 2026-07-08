@@ -1,0 +1,252 @@
+/* pages/login/login.wxss */
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 顶部装饰圆 */
+.top-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.circle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+.circle-1 {
+  width: 400rpx;
+  height: 400rpx;
+  top: -150rpx;
+  right: -120rpx;
+}
+
+.circle-2 {
+  width: 250rpx;
+  height: 250rpx;
+  top: 40%;
+  left: -100rpx;
+}
+
+.circle-3 {
+  width: 180rpx;
+  height: 180rpx;
+  bottom: 15%;
+  right: -60rpx;
+}
+
+/* 标题区域（居中，无 Logo） */
+.title-area {
+  text-align: center;
+  padding: 0 48rpx;
+  margin-bottom: 80rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.app-name {
+  display: block;
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 4rpx;
+  margin-bottom: 16rpx;
+}
+
+.slogan {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 2rpx;
+}
+
+/* 表单区域 */
+.form-area {
+  width: 85%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 48rpx;
+  padding: 48rpx 40rpx;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20rpx 40rpx rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+/* 微信授权区域 */
+.wechat-login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+/* 头像按钮 */
+.avatar-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.avatar-btn::after {
+  border: none;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #f0f0f0;
+  margin-bottom: 12rpx;
+}
+
+.avatar-tip {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 昵称输入框 */
+.nickname-input {
+  width: 100%;
+  height: 80rpx;
+  background: #f8f8f8;
+  border-radius: 40rpx;
+  padding: 0 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+  box-sizing: border-box;
+}
+
+/* 微信登录按钮 */
+.wx-login-btn {
+  width: 100%;
+  height: 96rpx;
+  background: linear-gradient(135deg, #07c160, #06ad56);
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  border: none;
+  box-shadow: 0 8rpx 20rpx rgba(7, 193, 96, 0.3);
+  margin-bottom: 30rpx;
+}
+
+.wx-login-btn::after {
+  border: none;
+}
+
+/* 分割线 */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30rpx 0 30rpx;
+}
+
+.divider-line {
+  width: 100rpx;
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent, #ddd, transparent);
+}
+
+.divider-text {
+  font-size: 26rpx;
+  color: #999;
+  margin: 0 24rpx;
+}
+
+/* 其他登录方式 */
+.other-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 24rpx;
+  background: #f8f8f8;
+  border-radius: 48rpx;
+  transition: all 0.3s;
+}
+
+.other-login:active {
+  background: #f0f0f0;
+}
+
+.other-icon {
+  font-size: 36rpx;
+}
+
+.other-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 协议条款 */
+.agreement {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 48rpx 40rpx;
+  text-align: center;
+}
+
+.agreement-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4rpx;
+}
+
+.agreement-text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.agreement-link {
+  font-size: 24rpx;
+  color: #ffd700;
+}
+
+/* iPhone 底部安全区域适配 */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .agreement {
+    padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+  }
+}
+
+/* 小屏幕适配 */
+@media screen and (max-height: 700px) {
+  .title-area {
+    margin-bottom: 40rpx;
+  }
+  .app-name {
+    font-size: 44rpx;
+  }
+  .form-area {
+    padding: 32rpx 32rpx;
+  }
+  .wx-login-btn {
+    height: 84rpx;
+  }
+}

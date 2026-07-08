@@ -1,0 +1,24 @@
+/* pages/welcome/welcome.wxss */
+page{
+  height: 100%;
+}
+
+.container{
+  width: 100%;
+  height: 100%;
+}
+
+.container .img{
+  width: 100%;
+  height: 100%;
+}
+
+.jump{
+  font-size: 30rpx;
+  position: absolute;
+  left: 600rpx;
+  top: 80rpx;
+  background-color: #dddddd;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+}

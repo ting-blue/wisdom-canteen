@@ -1,0 +1,44 @@
+<!--index.wxml-->
+
+<view class="banners">
+    <swiper autoplay interval="2000" indicator-dots circular>
+      <swiper-item wx:for="{{banner_list}}" wx:key="id">
+        <image src="{{item.img_b64}}" mode="widthFix"/>
+      </swiper-item>
+    </swiper>
+  </view>
+
+<!--- 通知 --->
+<van-notice-bar
+  left-icon="volume-o"
+  text="{{notice}}"
+/>
+
+<!-- 快捷入口  -->
+<van-grid column-num="4" border="{{false}}">
+  
+  <van-grid-item bind:click="gotohealth">
+    <!-- 重点：使用 slot="icon" 自定义图标区域 -->
+    <image class="custom-icon" slot="icon" src="/images/menu/健康.png" mode="aspectFit" />
+    <text class="custom-text" slot="text">健康</text>
+  </van-grid-item>
+
+  <van-grid-item bind:click="gotoMyMeal">
+    <image class="custom-icon" slot="icon" src="/images/menu/记录.png" mode="aspectFit" />
+    <text class="custom-text" slot="text">记录</text>
+  </van-grid-item>
+
+  <van-grid-item bind:click="gotoyunshipu">
+    <image class="custom-icon" slot="icon" src="/images/menu/云食谱.png" mode="aspectFit" />
+    <text class="custom-text" slot="text">云食谱</text>
+  </van-grid-item>
+
+  <van-grid-item bind:click="gotofeedback">
+    <image class="custom-icon" slot="icon" src="/images/menu/意见反馈.png" mode="aspectFit" />
+    <text class="custom-text" slot="text">意见反馈</text>
+  </van-grid-item>
+
+</van-grid>
+
+
+

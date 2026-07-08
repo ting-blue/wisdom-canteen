@@ -1,0 +1,97 @@
+.container {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 40rpx;
+}
+
+/* 卡片 */
+.card-box {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border-radius: 28rpx;
+  padding: 50rpx 40rpx;
+  color: #fff;
+  margin-bottom: 40rpx;
+  box-shadow: 0 12rpx 40rpx rgba(99,102,241,0.35);
+}
+.card-chip {
+  font-size: 48rpx;
+  margin-bottom: 6rpx;
+}
+.card-number {
+  font-size: 26rpx;
+  opacity: 0.7;
+  letter-spacing: 4rpx;
+}
+.card-balance-row {
+  margin-top: 36rpx;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.balance-label {
+  font-size: 28rpx;
+  opacity: 0.7;
+}
+.balance-value {
+  font-size: 56rpx;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+}
+
+/* 按钮 */
+.card-actions {
+  display: flex;
+  gap: 24rpx;
+}
+.act-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  border: none;
+}
+.recharge {
+  background: #6366f1;
+  color: #fff;
+}
+.unbind {
+  background: #fff;
+  color: #999;
+  border: 1rpx solid #ddd;
+}
+
+/* 未绑定 */
+.empty-box {
+  text-align: center;
+  padding: 160rpx 0 60rpx;
+}
+.empty-icon {
+  font-size: 100rpx;
+}
+.empty-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-top: 24rpx;
+}
+.empty-desc {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 12rpx;
+}
+.bind-actions {
+  width: 80%;
+  margin: 0 auto;
+}
+.primary {
+  background: #6366f1;
+  color: #fff;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}

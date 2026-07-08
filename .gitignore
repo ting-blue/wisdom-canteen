@@ -1,0 +1,20 @@
+# 编译产物
+obj/
+*.elf *.hex *.map *.lst *.o *.d
+makefile objects.mk sources.mk subdir.mk
+
+# IDE工程配置文件
+.cproject .project .settings/ *.launch *.wvproj
+.idea/ __pycache__/ *.pyc
+
+# 数据库、图片资源
+db.sqlite3
+media/
+images/
+
+# 微信小程序npm依赖
+miniprogram_npm/
+
+# 压缩包、AI模型大文件
+*.zip
+*.kmodel

@@ -1,0 +1,111 @@
+<!-- pages/register/register.wxml -->
+
+<view class="container">
+  
+  <!-- 可滚动内容区域 -->
+  <scroll-view class="scroll-content" scroll-y enhanced show-scrollbar="{{false}}">
+    
+    <!-- 顶部返回按钮 -->
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">←</text>
+      <text class="back-text">返回</text>
+    </view>
+
+    <!-- 标题 -->
+    <view class="header">
+      <text class="title">注册账号</text>
+      <text class="subtitle">欢迎加入智慧食堂</text>
+    </view>
+
+    <!-- 注册表单 -->
+    <view class="form-area">
+      
+      <!-- 手机号 -->
+      <view class="input-group">
+        <view class="input-icon">📱</view>
+        <input 
+          class="input-field" 
+          type="number"
+          placeholder="请输入手机号"
+          placeholder-class="placeholder"
+          value="{{phone}}"
+          bindinput="onPhoneInput"
+          maxlength="11"
+        />
+      </view>
+
+      <!-- 密码 -->
+      <view class="input-group">
+        <view class="input-icon">🔒</view>
+        <input 
+          class="input-field" 
+          type="text"
+          password="{{!showPassword}}"
+          placeholder="请输入密码（至少6位）"
+          placeholder-class="placeholder"
+          value="{{password}}"
+          bindinput="onPasswordInput"
+        />
+        <view class="password-toggle" bindtap="togglePassword">
+          <text class="toggle-icon">{{showPassword ? '🙈' : '👁️'}}</text>
+        </view>
+      </view>
+
+      <!-- 确认密码 -->
+      <view class="input-group">
+        <view class="input-icon">🔒</view>
+        <input 
+          class="input-field" 
+          type="text"
+          password="{{!showConfirmPwd}}"
+          placeholder="请再次输入密码"
+          placeholder-class="placeholder"
+          value="{{confirmPassword}}"
+          bindinput="onConfirmPwdInput"
+        />
+        <view class="password-toggle" bindtap="toggleConfirmPwd">
+          <text class="toggle-icon">{{showConfirmPwd ? '🙈' : '👁️'}}</text>
+        </view>
+      </view>
+
+      <!-- 昵称 -->
+      <view class="input-group">
+        <view class="input-icon">👤</view>
+        <input 
+          class="input-field" 
+          placeholder="请输入昵称（可选）"
+          placeholder-class="placeholder"
+          value="{{nickname}}"
+          bindinput="onNicknameInput"
+        />
+      </view>
+
+      <!-- 注册按钮 -->
+      <button class="register-btn" bindtap="doRegister" loading="{{isLoading}}" disabled="{{isLoading}}">
+        {{isLoading ? '注册中...' : '注册'}}
+      </button>
+
+      <!-- 登录跳转 -->
+      <view class="login-link">
+        <text class="login-text">已有账号？</text>
+        <text class="login-btn-text" bindtap="goToLogin">立即登录</text>
+      </view>
+
+    </view>
+
+  </scroll-view>
+
+  <!-- 协议条款（固定在底部） -->
+  <view class="agreement">
+    <view class="agreement-content">
+      <checkbox-group bindchange="onAgreementChange">
+        <checkbox value="agree" checked="{{agreed}}" color="#4CAF50" style="transform: scale(0.8);" />
+      </checkbox-group>
+      <text class="agreement-text">我已阅读并同意</text>
+      <text class="agreement-link" bindtap="showUserAgreement">《用户协议》</text>
+      <text class="agreement-text">和</text>
+      <text class="agreement-link" bindtap="showPrivacyPolicy">《隐私政策》</text>
+    </view>
+  </view>
+
+</view>

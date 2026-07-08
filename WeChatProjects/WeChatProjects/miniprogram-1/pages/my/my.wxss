@@ -1,0 +1,120 @@
+/* pages/my/my.wxss */
+
+page{
+  height: 100%;
+}
+
+.login-area{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-area .btn{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 500%;
+  background-color: #5cb85c;
+  color: white;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.user-area{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.user-area image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 500%;
+}
+.user-area .name{
+  font-size: 30rpx;
+  padding: 30rpx 0;
+}
+
+.user-area .logout{
+  color: #a94442;
+}
+
+
+
+.top-view{
+  background-color: #01ccb6;
+
+  color: white;
+  padding: 40rpx;
+}
+
+.top-view .user{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-view .user .row{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.top-view .user .avatar{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.top-view .user .name{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 20rpx;
+}
+.top-view .user .name navigator{
+  padding: 0 5rpx;
+}
+
+.top-view .site{
+  background-color: rgba(0, 0, 0, 0.16);
+  padding: 20rpx;
+  border-top-left-radius: 32rpx;
+  border-bottom-left-radius: 32rpx;
+}
+
+.top-view .numbers{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding: 40rpx;
+  padding-bottom: 0rpx;
+}
+
+.top-view .numbers .row{
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+}
+.contact-btn::after {
+  border: none;
+}

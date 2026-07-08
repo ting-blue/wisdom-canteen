@@ -1,0 +1,16 @@
+<!--pages/pay/pay.wxml-->
+
+<view class="container">
+    <view class="card">
+      <text class="title">扫码支付</text>
+      <text class="balance">余额：¥{{balance}}</text>
+      <text class="card-no">卡号：{{cardUid || '未绑定'}}</text>
+    </view>
+
+    <view class="input-box">
+      <text class="label">支付金额</text>
+      <input class="amount-input" type="digit" value="{{amount}}" placeholder="输入金额" bindinput="onAmountInput"/>
+    </view>
+
+    <button class="pay-btn" bindtap="confirmPay">确认支付</button>
+  </view>

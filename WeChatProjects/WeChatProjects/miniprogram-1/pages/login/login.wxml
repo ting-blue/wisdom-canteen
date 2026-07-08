@@ -1,0 +1,72 @@
+<!-- pages/login/login.wxml -->
+
+<view class="container">
+  
+  <!-- 顶部装饰 -->
+  <view class="top-decoration">
+    <view class="circle circle-1"></view>
+    <view class="circle circle-2"></view>
+    <view class="circle circle-3"></view>
+  </view>
+
+  <!-- 标题区域（无 Logo） -->
+  <view class="title-area">
+    <text class="app-name">智慧食堂</text>
+    <text class="slogan">健康饮食，从这一餐开始</text>
+  </view>
+
+  <!-- 登录表单 -->
+  <view class="form-area">
+    
+    <!-- 1. 微信登录区（包含头像和昵称填写） -->
+    <view class="wechat-login-section">
+      <!-- 头像选择按钮 -->
+      <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <image class="avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
+        <view class="avatar-tip">点击更换头像</view>
+      </button>
+
+      <!-- 昵称输入框 -->
+      <input 
+        type="nickname" 
+        class="nickname-input" 
+        placeholder="请输入昵称" 
+        bindinput="onNicknameInput"
+        value="{{nickName}}"
+      />
+    </view>
+
+    <!-- 2. 确认登录按钮 -->
+    <button class="wx-login-btn" bindtap="handleAgreeAndLogin">
+      确认登录
+    </button>
+
+    <!-- 分割线 -->
+    <view class="divider">
+      <view class="divider-line"></view>
+      <text class="divider-text">其他登录方式</text>
+      <view class="divider-line"></view>
+    </view>
+
+    <!-- 手机号密码登录 -->
+    <view class="other-login" bindtap="showPwdLogin">
+      <text class="other-icon">📱</text>
+      <text class="other-text">手机号密码登录</text>
+    </view>
+
+  </view>
+
+  <!-- 协议条款 -->
+  <view class="agreement">
+    <view class="agreement-content">
+      <checkbox-group bindchange="onAgreementChange">
+        <checkbox value="agree" checked="{{agreed}}" color="#4CAF50" style="transform: scale(0.7);" />
+      </checkbox-group>
+      <text class="agreement-text">阅读并同意</text>
+      <text class="agreement-link" bindtap="showUserAgreement">《用户协议》</text>
+      <text class="agreement-text">及</text>
+      <text class="agreement-link" bindtap="showPrivacyPolicy">《隐私政策》</text>
+    </view>
+  </view>
+
+</view>

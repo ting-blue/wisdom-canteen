@@ -1,0 +1,333 @@
+<!--pages/health/health.wxml-->
+
+<wxs module="u">
+    function has(arr, val) {
+      if (!arr) return false;
+      return arr.indexOf(val) !== -1;
+    }
+    module.exports = { has: has };
+  </wxs>
+
+<view class="container">
+  
+  <!-- 头部 -->
+  <view class="header" wx:if="{{!reportData}}">
+    <text class="title">我的健康档案</text>
+    <text class="subtitle">完善个人信息，获取更精准的饮食推荐</text>
+  </view>
+
+  <!-- 营养报告 -->
+  <view wx:if="{{reportData}}" class="report-card">
+    <view class="report-header">📊 今日营养报告</view>
+    <view class="report-date">{{reportData.date}}</view>
+    <view class="report-stats">
+      <text>共摄入 {{reportData.totalCalorie}} 千卡</text>
+      <text>蛋白质 {{reportData.totalProtein}}g</text>
+      <text>{{reportData.mealCount}} 餐</text>
+    </view>
+    <view class="report-dishes">菜品：{{reportData.dishes}}</view>
+    <view class="report-content">{{reportData.content}}</view>
+  </view>
+
+  <scroll-view class="form-scroll" scroll-y wx:if="{{!reportData}}">
+
+    <!-- 基础信息卡片 -->
+    <view class="card">
+      <view class="card-title">
+        <text class="card-icon">📋</text>
+        <text class="card-text">基础信息</text>
+      </view>
+
+      <!-- 身高 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">📏</text>
+          <text class="label-text">身高</text>
+          <text class="label-unit">cm</text>
+        </view>
+        <view class="input-wrapper">
+          <input 
+            class="input-field" 
+            type="digit"
+            placeholder="请输入身高"
+            value="{{height}}"
+            bindinput="onHeightInput"
+          />
+        </view>
+        <slider 
+          class="slider"
+          min="100" 
+          max="250" 
+          value="{{heightSlider}}"
+          bindchange="onHeightSlider"
+          activeColor="#4CAF50"
+        />
+      </view>
+
+      <!-- 体重 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">⚖️</text>
+          <text class="label-text">体重</text>
+          <text class="label-unit">kg</text>
+        </view>
+        <view class="input-wrapper">
+          <input 
+            class="input-field" 
+            type="digit"
+            placeholder="请输入体重"
+            value="{{weight}}"
+            bindinput="onWeightInput"
+          />
+        </view>
+        <slider 
+          class="slider"
+          min="30" 
+          max="200" 
+          value="{{weightSlider}}"
+          bindchange="onWeightSlider"
+          activeColor="#4CAF50"
+        />
+      </view>
+
+      <!-- 体脂率（可选） -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">📊</text>
+          <text class="label-text">体脂率</text>
+          <text class="label-unit">%</text>
+          <text class="label-optional">（可选）</text>
+        </view>
+        <view class="input-wrapper">
+          <input 
+            class="input-field" 
+            type="digit"
+            placeholder="请输入体脂率"
+            value="{{bodyFat}}"
+            bindinput="onBodyFatInput"
+          />
+        </view>
+        <slider 
+          class="slider"
+          min="5" 
+          max="50" 
+          value="{{bodyFatSlider}}"
+          bindchange="onBodyFatSlider"
+          activeColor="#4CAF50"
+        />
+      </view>
+
+      <!-- 年龄 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">🎂</text>
+          <text class="label-text">年龄</text>
+          <text class="label-unit">岁</text>
+        </view>
+        <view class="input-wrapper">
+          <input 
+            class="input-field" 
+            type="number"
+            placeholder="请输入年龄"
+            value="{{age}}"
+            bindinput="onAgeInput"
+          />
+        </view>
+        <slider 
+          class="slider"
+          min="1" 
+          max="120" 
+          value="{{ageSlider}}"
+          bindchange="onAgeSlider"
+          activeColor="#4CAF50"
+        />
+      </view>
+
+      <!-- 性别 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">👤</text>
+          <text class="label-text">性别</text>
+        </view>
+        <view class="gender-group">
+          <view class="gender-item {{gender === 'male' ? 'active' : ''}}" bindtap="selectGender" data-gender="male">
+            <text class="gender-icon">👨</text>
+            <text class="gender-text">男</text>
+          </view>
+          <view class="gender-item {{gender === 'female' ? 'active' : ''}}" bindtap="selectGender" data-gender="female">
+            <text class="gender-icon">👩</text>
+            <text class="gender-text">女</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 生活方式卡片 -->
+    <view class="card">
+      <view class="card-title">
+        <text class="card-icon">🏃</text>
+        <text class="card-text">生活方式</text>
+      </view>
+
+      <!-- 活动水平 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">🏃</text>
+          <text class="label-text">活动水平</text>
+        </view>
+        <view class="activity-group">
+          <view class="activity-item {{activityLevel === 'sedentary' ? 'active' : ''}}" bindtap="selectActivity" data-level="sedentary">
+            <text class="activity-icon">🪑</text>
+            <text class="activity-text">久坐少动</text>
+          </view>
+          <view class="activity-item {{activityLevel === 'light' ? 'active' : ''}}" bindtap="selectActivity" data-level="light">
+            <text class="activity-icon">🚶</text>
+            <text class="activity-text">轻度活动</text>
+          </view>
+          <view class="activity-item {{activityLevel === 'moderate' ? 'active' : ''}}" bindtap="selectActivity" data-level="moderate">
+            <text class="activity-icon">🏋️</text>
+            <text class="activity-text">中度活动</text>
+          </view>
+          <view class="activity-item {{activityLevel === 'active' ? 'active' : ''}}" bindtap="selectActivity" data-level="active">
+            <text class="activity-icon">🏃‍♂️</text>
+            <text class="activity-text">非常活跃</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 饮食目标 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">🎯</text>
+          <text class="label-text">饮食目标</text>
+        </view>
+        <view class="goal-group">
+          <view class="goal-item {{goal === 'lose' ? 'active' : ''}}" bindtap="selectGoal" data-goal="lose">
+            <text class="goal-icon">⬇️</text>
+            <text class="goal-text">减脂</text>
+          </view>
+          <view class="goal-item {{goal === 'maintain' ? 'active' : ''}}" bindtap="selectGoal" data-goal="maintain">
+            <text class="goal-icon">⚖️</text>
+            <text class="goal-text">保持</text>
+          </view>
+          <view class="goal-item {{goal === 'gain' ? 'active' : ''}}" bindtap="selectGoal" data-goal="gain">
+            <text class="goal-icon">⬆️</text>
+            <text class="goal-text">增肌</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 饮食限制卡片 -->
+    <view class="card">
+      <view class="card-title">
+        <text class="card-icon">⚠️</text>
+        <text class="card-text">饮食限制</text>
+      </view>
+
+      <!-- 忌口/过敏 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">⚠️</text>
+          <text class="label-text">忌口/过敏</text>
+          <text class="label-hint">（可多选）</text>
+        </view>
+        
+        <view class="allergy-group">
+          <view class="allergy-item {{u.has(allergies, 'peanuts') ? 'active' : ''}}" bindtap="toggleAllergy" data-allergy="peanuts">
+            <text>🥜</text>
+            <text>花生</text>
+          </view>
+          <view class="allergy-item {{u.has(allergies, 'seafood') ? 'active' : ''}}" bindtap="toggleAllergy" data-allergy="seafood">
+            <text>🦐</text>
+            <text>海鲜</text>
+          </view>
+          <view class="allergy-item {{u.has(allergies, 'milk') ? 'active' : ''}}" bindtap="toggleAllergy" data-allergy="milk">
+            <text>🥛</text>
+            <text>乳制品</text>
+          </view>
+          <view class="allergy-item {{u.has(allergies, 'gluten') ? 'active' : ''}}" bindtap="toggleAllergy" data-allergy="gluten">
+            <text>🌾</text>
+            <text>麸质</text>
+          </view>
+          <view class="allergy-item {{u.has(allergies, 'soy') ? 'active' : ''}}" bindtap="toggleAllergy" data-allergy="soy">
+            <text>🫘</text>
+            <text>大豆</text>
+          </view>
+          <view class="allergy-item {{u.has(allergies, 'egg') ? 'active' : ''}}" bindtap="toggleAllergy" data-allergy="egg">
+            <text>🥚</text>
+            <text>鸡蛋</text>
+          </view>
+        </view>
+        <!-- 自定义忌口 -->
+        <view class="custom-input-area">
+          <input class="custom-input" placeholder="输入其他忌口" value="{{customAllergy}}" bindinput="onCustomAllergyInput" />
+          <button class="add-btn" bindtap="addCustomAllergy">添加</button>
+        </view>
+        <view class="custom-tags" wx:if="{{customAllergies.length > 0}}">
+          <view class="custom-tag" wx:for="{{customAllergies}}" wx:key="index">
+            <text>{{item}}</text>
+            <text class="tag-remove" bindtap="removeCustomAllergy" data-index="{{index}}">✕</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 健康状况 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-icon">🏥</text>
+          <text class="label-text">健康状况</text>
+          <text class="label-hint">（可多选）</text>
+        </view>
+        <view class="disease-group">
+          <view class="disease-item {{u.has(diseases, 'diabetes') ? 'active' : ''}}" bindtap="toggleDisease" data-disease="diabetes">
+            <text>🍬</text>
+            <text>糖尿病</text>
+          </view>
+          <view class="disease-item {{u.has(diseases, 'hypertension') ? 'active' : ''}}" bindtap="toggleDisease" data-disease="hypertension">
+            <text>❤️</text>
+            <text>高血压</text>
+          </view>
+          <view class="disease-item {{u.has(diseases, 'hyperlipidemia') ? 'active' : ''}}" bindtap="toggleDisease" data-disease="hyperlipidemia">
+            <text>🩸</text>
+            <text>高血脂</text>
+          </view>
+          <view class="disease-item {{u.has(diseases, 'gout') ? 'active' : ''}}" bindtap="toggleDisease" data-disease="gout">
+            <text>🦶</text>
+            <text>痛风</text>
+          </view>
+          <view class="disease-item {{u.has(diseases, 'gi') ? 'active' : ''}}" bindtap="toggleDisease" data-disease="gi">
+            <text>🍽️</text>
+            <text>肠胃疾病</text>
+          </view>
+          <view class="disease-item {{u.has(diseases, 'kidney') ? 'active' : ''}}" bindtap="toggleDisease" data-disease="kidney">
+            <text>💧</text>
+            <text>肾脏疾病</text>
+          </view>
+          <view class="disease-item {{u.has(diseases, 'none') ? 'active' : ''}}" bindtap="toggleDisease" data-disease="none">
+            <text>✅</text>
+            <text>无</text>
+          </view>
+        </view>
+        <!-- 自定义健康状况 -->
+        <view class="custom-input-area">
+          <input class="custom-input" placeholder="输入其他健康状况" value="{{customDisease}}" bindinput="onCustomDiseaseInput" />
+          <button class="add-btn" bindtap="addCustomDisease">添加</button>
+        </view>
+        <view class="custom-tags" wx:if="{{customDiseases.length > 0}}">
+          <view class="custom-tag" wx:for="{{customDiseases}}" wx:key="index">
+            <text>{{item}}</text>
+            <text class="tag-remove" bindtap="removeCustomDisease" data-index="{{index}}">✕</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 保存按钮 -->
+    <view class="btn-group">
+      <button class="save-btn" bindtap="saveHealthInfo">保存修改</button>
+    </view>
+
+  </scroll-view>  
+
+</view>

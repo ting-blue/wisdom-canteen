@@ -1,0 +1,60 @@
+<!-- pages/my-meal/my-meal.wxml -->
+
+<!-- ===== 日期选择和记录列表 ===== -->
+<view class="container">
+  
+  <!-- 日期选择器 -->
+  <view class="date-filter">
+    <picker mode="selector" range="{{dateRange}}" bindchange="onDateChange">
+      <view class="filter-item">
+        <text>最近 {{selectedDays}} 天</text>
+        <text class="arrow">▼</text>
+      </view>
+    </picker>
+    <view class="stat-summary">
+      <text>共 {{totalCalorie}} 千卡</text>
+      <text>｜ {{totalCount}} 餐</text>
+    </view>
+  </view>
+
+  <!-- 按日期分组的记录列表 -->
+  <scroll-view class="record-list" scroll-y>
+    <block wx:for="{{groupedRecords}}" wx:key="date" wx:for-item="group">
+      <view class="date-group">
+        <view class="date-header">
+          <text class="date-text">{{group.date}}</text>
+          <text class="date-calorie">{{group.totalCalorie}}千卡</text>
+        </view>
+        
+        <view class="meal-items">
+          <view class="meal-item" wx:for="{{group.records}}" wx:key="id" wx:for-item="record">
+            <view class="meal-img-placeholder">
+    <text class="meal-img-text">{{record.food_name[0] || '🍽️'}}</text>
+  </view>
+            <view class="meal-info">
+              <view class="meal-name">{{record.food_name}}</view>
+              <view class="meal-detail">
+                <text>{{record.meal_type_text}}</text>
+                <text>｜ {{record.weight}}g</text>
+                <text>｜ {{record.calorie}}千卡</text>
+                <text>｜ 蛋白质{{record.protein || 0}}g</text>
+              </view>
+              <view class="meal-time">{{record.eat_time}}</view>
+            </view>
+            <view class="meal-delete" bindtap="deleteRecord" data-id="{{record.id}}">
+              <text>🗑️</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{groupedRecords.length === 0}}">
+      <text>还没有用餐记录</text>
+      <text class="empty-tip">去推荐页面点餐，记录会出现在这里</text>
+    </view>
+    
+  </scroll-view>
+
+</view>

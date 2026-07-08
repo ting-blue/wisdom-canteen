@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/index/index",
+    "pages/tuijian/tuijian",
+    "pages/my/my",
+    "pages/health/health",
+    "pages/document/document",
+    "pages/yunshipu/yunshipu",
+    "pages/feedback/feedback",
+    "pages/balance/balance",
+    "pages/setting/setting",
+    "pages/change-password/change-password",
+    "pages/my-meal/my-meal",
+    "pages/login/login",
+    "pages/health-info/health-info",
+    "pages/register/register",
+    "pages/card/card",
+    "pages/pay/pay"
+  ],
+  "window": {
+    "navigationBarTitleText": "智慧食堂",   
+    "navigationBarBackgroundColor": "#0000FF",  
+    "enablePullDownRefresh": true, 
+    "backgroundColor": "#00FFFF",  
+    "backgroundTextStyle": "dark"  
+    
+  },
+  "usingComponents": {
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-share-sheet": "@vant/weapp/share-sheet/index",
+    "van-button": "@vant/weapp/button/index"
+  },
+  "tabBar": {
+    "selectedColor": "#b4282d",
+    "position":"bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text":"首页",
+        "iconPath": "images/perture/home.png",
+        "selectedIconPath": "images/perture/home_select.png"
+      },
+      {
+        "pagePath": "pages/tuijian/tuijian",
+        "text":"推荐",
+        "iconPath": "images/perture/tuijian.png",
+        "selectedIconPath": "images/perture/tuijian_select.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text":"我的",
+        "iconPath": "images/perture/my.png",
+        "selectedIconPath": "images/perture/my_select.png"
+      }
+
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+
+}

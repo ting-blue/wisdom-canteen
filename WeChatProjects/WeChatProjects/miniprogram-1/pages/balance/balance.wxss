@@ -1,0 +1,282 @@
+/* pages/balance/balance.wxss */
+
+.container {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* ===== 余额卡片 ===== */
+.balance-card {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  margin: 20rpx 30rpx;
+  padding: 36rpx 32rpx 28rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(76, 175, 80, 0.35);
+}
+
+.balance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balance-label {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.balance-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  font-size: 26rpx;
+  padding: 8rpx 24rpx;
+  border-radius: 30rpx;
+  color: #fff;
+  border: 1rpx solid rgba(255, 255, 255, 0.4);
+}
+
+.recharge-btn {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.recharge-btn:active {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.withdraw-btn {
+  background: transparent;
+}
+
+.withdraw-btn:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.balance-amount {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  padding: 20rpx 0 16rpx;
+}
+
+.currency {
+  font-size: 36rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 8rpx;
+}
+
+.amount {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2rpx;
+}
+
+/* ===== 统计行 ===== */
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stat-value {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 4rpx;
+}
+
+.stat-value.income {
+  color: #81C784;
+}
+
+.stat-value.expense {
+  color: #FFAB91;
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 48rpx;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== 标签栏 ===== */
+.tab-bar {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  margin: 0 30rpx 20rpx;
+  border-radius: 16rpx;
+  padding: 8rpx 0;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.tab-item {
+  padding: 16rpx 40rpx;
+  font-size: 28rpx;
+  color: #999;
+  border-radius: 12rpx;
+  transition: all 0.3s;
+}
+
+.tab-item.active {
+  color: #4CAF50;
+  background: #e8f5e9;
+  font-weight: 600;
+}
+
+/* ===== 账单列表 ===== */
+.bill-list {
+  height: calc(100vh - 480rpx);
+  padding: 0 30rpx;
+}
+
+/* ===== 日期分组 ===== */
+.date-group {
+  margin-bottom: 16rpx;
+}
+
+.date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12rpx 4rpx 8rpx;
+}
+
+.date-text {
+  font-size: 26rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.date-stats {
+  display: flex;
+  gap: 16rpx;
+  font-size: 24rpx;
+}
+
+.day-income {
+  color: #4CAF50;
+}
+
+.day-expense {
+  color: #FF6B6B;
+}
+
+/* ===== 账单项 ===== */
+.bill-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 20rpx 24rpx;
+  border-radius: 12rpx;
+  margin-bottom: 8rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.04);
+}
+
+.bill-icon {
+  width: 48rpx;
+  height: 48rpx;
+  background: #f5f7fa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
+.bill-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bill-desc {
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+  word-break: break-all;
+}
+
+.bill-time {
+  font-size: 22rpx;
+  color: #bbb;
+  margin-top: 4rpx;
+  text-align: center;
+}
+
+.bill-amount {
+  font-size: 28rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-left: 8rpx;
+  min-width: 140rpx;
+  text-align: right;
+}
+
+.bill-amount.income {
+  color: #4CAF50;
+}
+
+.bill-amount.expense {
+  color: #FF6B6B;
+}
+
+.bill-desc-sub {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+}
+
+/* ===== 空状态 ===== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 120rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #ccc;
+  margin-top: 20rpx;
+}
+
+/* ===== 加载中 ===== */
+.loading {
+  text-align: center;
+  padding-top: 60rpx;
+  color: #ccc;
+  font-size: 28rpx;
+}
+
+/* ===== 底部留白 ===== */
+.bottom-space {
+  height: 40rpx;
+}

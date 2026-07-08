@@ -1,0 +1,94 @@
+<!--pages/setting/setting.wxml-->
+
+<view class="container">
+  
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="avatar-wrapper" bindtap="chooseAvatar">
+      <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill"></image>
+      <view class="avatar-mask">
+        <text>点击更换</text>
+      </view>
+    </view>
+    <view class="user-info">
+      <view class="nickname-wrapper">
+        <text class="nickname">{{userInfo.nickname || userInfo.name}}</text>
+        <text class="edit-icon" bindtap="editNickname">✎</text>
+      </view>
+      <text class="user-id">ID: {{userInfo.id || '123456'}}</text>
+    </view>
+  </view>
+
+  <!-- 设置列表 -->
+  <view class="settings-list">
+    <view class="list-title">账号设置</view>
+    
+    <view class="list-item" bindtap="editNickname">
+      <view class="item-left">
+        <text class="item-icon">✏️</text>
+        <text class="item-label">修改昵称</text>
+      </view>
+      <text class="item-value">{{userInfo.nickname || userInfo.name}}</text>
+      <text class="item-arrow">›</text>
+    </view>
+
+    <view class="list-item" bindtap="chooseAvatar">
+      <view class="item-left">
+        <text class="item-icon">🖼️</text>
+        <text class="item-label">修改头像</text>
+      </view>
+      <text class="item-arrow">›</text>
+    </view>
+
+    <view class="list-item" bindtap="switchAccount">
+      <view class="item-left">
+        <text class="item-icon">🔄</text>
+        <text class="item-label">切换账号</text>
+      </view>
+      <text class="item-arrow">›</text>
+    </view>
+
+    <view class="list-item" bindtap="changePassword">
+      <view class="item-left">
+        <text class="item-icon">🔒</text>
+        <text class="item-label">修改密码</text>
+      </view>
+      <text class="item-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="settings-list">
+    <view class="list-title">通用设置</view>
+    
+    <view class="list-item" bindtap="clearCache">
+      <view class="item-left">
+        <text class="item-icon">🗑️</text>
+        <text class="item-label">清除缓存</text>
+      </view>
+      <text class="item-value">{{cacheSize}}</text>
+      <text class="item-arrow">›</text>
+    </view>
+
+    <view class="list-item" bindtap="about">
+      <view class="item-left">
+        <text class="item-icon">ℹ️</text>
+        <text class="item-label">关于我们</text>
+      </view>
+      <text class="item-arrow">›</text>
+    </view>
+
+    <view class="list-item" bindtap="privacyPolicy">
+      <view class="item-left">
+        <text class="item-icon">📜</text>
+        <text class="item-label">隐私政策</text>
+      </view>
+      <text class="item-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 退出登录按钮 -->
+  <view class="logout-btn" bindtap="logout">
+    <text>退出登录</text>
+  </view>
+
+</view>

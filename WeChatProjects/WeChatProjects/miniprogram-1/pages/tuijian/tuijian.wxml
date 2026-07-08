@@ -1,0 +1,79 @@
+<!--pages/tuijian/tuijian.wxml-->
+
+<view class="container">
+  <view class="food-list">
+    <view class="food-card" wx:for="{{foods}}" wx:key="id">
+      
+      <view class="food-img-wrapper">
+        <image class="food-img" src="{{item.img}}" mode="aspectFill"/>
+      </view>
+      
+      <view class="food-info">
+        <view class="food-header">
+          <text class="food-name">{{item.name}}</text>
+          <text class="food-price">¥{{item.price}}</text>
+        </view>
+        
+        <!-- 营养信息 -->
+        <view class="nutrition-grid">
+          <view class="nutrition-item">
+            <text class="nutrition-value">{{item.nutrition_info.calorie}}</text>
+            <text class="nutrition-label">千卡</text>
+          </view>
+          <view class="nutrition-item">
+            <text class="nutrition-value">{{item.nutrition_info.protein}}</text>
+            <text class="nutrition-label">蛋白质(g)</text>
+          </view>
+          <view class="nutrition-item">
+            <text class="nutrition-value">{{item.nutrition_info.fat}}</text>
+            <text class="nutrition-label">脂肪(g)</text>
+          </view>
+          <view class="nutrition-item">
+            <text class="nutrition-value">{{item.nutrition_info.carb}}</text>
+            <text class="nutrition-label">碳水(g)</text>
+          </view>
+        </view>
+        
+        <!-- 重量选择器 -->
+        <view class="weight-selector">
+          <text class="weight-label">份量：</text>
+          <input
+              class="weight-input"
+              type="number"
+              value="{{item.selectedWeight ||
+  item.default_weight}}"
+              bindinput="onWeightInput"
+              data-id="{{item.id}}"
+            />
+        </view>
+        
+        <!-- 热量明细 -->
+        <view class="calorie-detail" wx:if="{{item.showDetail}}">
+          <text class="detail-title">热量构成：</text>
+          <text class="detail-text">菜品基础: {{item.nutrition_info.calorie - item.nutrition_info.sauce_calorie - item.nutrition_info.oil_calorie}}kcal</text>
+          <text class="detail-text">酱料: +{{item.nutrition_info.sauce_calorie}}kcal</text>
+          <text class="detail-text">食用油: +{{item.nutrition_info.oil_calorie}}kcal</text>
+          <text class="detail-text total">合计: {{item.nutrition_info.calorie}}kcal</text>
+        </view>
+        
+        <view class="food-desc">{{item.description}}</view>
+        
+        <view class="card-footer">
+          <text class="spiciness">🌶️ 辣度{{item.spiciness}}级</text>
+          <text class="rating">⭐ {{item.rating}}</text>
+          <text class="more" bindtap="toggleDetail" data-id="{{item.id}}">
+            {{item.showDetail ? '收起详情' : '查看热量'}}
+          </text>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+</view>
+
+<!-- 页面顶部添加AI助手入口 -->
+<view class="ai-assistant" bindtap="openAIChat">
+  <van-button type="primary" block>🤖 AI营养师 </van-button>
+  <text> AI营养师 -- 智能推荐菜谱</text>
+  <text class="arrow">›</text>
+</view>

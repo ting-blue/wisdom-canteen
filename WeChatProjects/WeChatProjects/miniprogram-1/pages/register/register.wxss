@@ -1,0 +1,219 @@
+/* pages/register/register.wxss */
+.container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 可滚动内容区域 */
+.scroll-content {
+  flex: 1;
+  padding: 30rpx 40rpx 0 40rpx;
+  box-sizing: border-box;
+}
+
+/* 返回按钮 */
+.nav-back {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 20rpx 0;
+  width: fit-content;
+}
+
+.back-icon {
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+.back-text {
+  font-size: 30rpx;
+  color: #fff;
+}
+
+/* 标题 */
+.header {
+  margin-bottom: 60rpx;
+  margin-top: 40rpx;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 16rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 表单区域 */
+.form-area {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 32rpx;
+  padding: 40rpx 32rpx;
+  backdrop-filter: blur(10px);
+  margin-bottom: 30rpx;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #eee;
+  margin-bottom: 36rpx;
+  padding-bottom: 16rpx;
+  position: relative;
+}
+
+.input-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.input-field {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.placeholder {
+  color: #ccc;
+  font-size: 28rpx;
+}
+
+/* 验证码组 */
+.code-group {
+  position: relative;
+}
+
+.code-btn {
+  flex-shrink: 0;
+  font-size: 26rpx;
+  color: #667eea;
+  background: #f0f0f0;
+  padding: 12rpx 20rpx;
+  border-radius: 40rpx;
+  margin-left: 20rpx;
+}
+
+.code-btn.disabled {
+  color: #ccc;
+}
+
+/* 密码切换 */
+.password-toggle {
+  font-size: 32rpx;
+  padding: 0 10rpx;
+}
+
+/* 注册按钮 */
+.register-btn {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 48rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
+  border: none;
+  box-shadow: 0 8rpx 20rpx rgba(102, 126, 234, 0.3);
+}
+
+.register-btn::after {
+  border: none;
+}
+
+/* 登录链接 */
+.login-link {
+  text-align: center;
+  margin-top: 30rpx;
+  padding-bottom: 20rpx;
+}
+
+.login-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.login-btn-text {
+  font-size: 28rpx;
+  color: #667eea;
+  margin-left: 12rpx;
+  font-weight: 500;
+}
+
+/* 协议条款（固定在底部） */
+.agreement {
+  flex-shrink: 0;
+  background: transparent;
+  padding: 20rpx 40rpx 30rpx;
+  border-top: none;
+}
+
+.agreement-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.agreement-text {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.agreement-link {
+  font-size: 24rpx;
+  color: #ffd700;
+}
+
+/* iPhone 底部安全区域适配（刘海屏、底部黑条） */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .agreement {
+    padding-bottom: calc(30rpx + env(safe-area-inset-bottom));
+  }
+}
+
+/* 针对不同屏幕尺寸的适配 */
+@media screen and (max-height: 700px) {
+  .header {
+    margin-bottom: 30rpx;
+    margin-top: 20rpx;
+  }
+  .form-area {
+    padding: 30rpx 28rpx;
+  }
+  .input-group {
+    margin-bottom: 24rpx;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .header {
+    margin-bottom: 20rpx;
+    margin-top: 10rpx;
+  }
+  .title {
+    font-size: 40rpx;
+  }
+  .form-area {
+    padding: 24rpx 24rpx;
+  }
+  .input-group {
+    margin-bottom: 18rpx;
+  }
+  .register-btn {
+    height: 76rpx;
+    margin-top: 10rpx;
+  }
+}

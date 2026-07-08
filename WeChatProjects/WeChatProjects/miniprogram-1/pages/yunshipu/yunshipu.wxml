@@ -1,0 +1,115 @@
+<!--pages/yunshipu/yunshipu.wxml-->
+
+<view class="container">
+  
+  <!-- 头部导航（增加安全区域内边距） -->
+  <view class="chat-header" style="padding-top: {{statusBarHeight + 10}}px;">
+    <view class="header-back" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <view class="header-title">
+      <text class="title-text">AI 营养师</text>
+      <text class="title-sub">智能饮食助手</text>
+    </view>
+    <view class="header-placeholder"></view>
+  </view>
+
+  <!-- 聊天内容区域 -->
+  <scroll-view 
+    class="chat-list" 
+    scroll-y 
+    scroll-into-view="{{scrollToView}}" 
+    enhanced 
+    show-scrollbar="{{false}}"
+    style="height: calc(100vh - {{headerHeight}}px - {{safeBottomHeight}}px - 130px);"
+  >
+    
+    <!-- 空状态欢迎卡片 -->
+    <view class="welcome-card" wx:if="{{messages.length === 0}}">
+      <view class="welcome-avatar">
+        <text class="avatar-icon">🤖</text>
+      </view>
+      <view class="welcome-title">你好！我是 AI 营养师</view>
+      <view class="welcome-desc">告诉我你有什么食材，或者想吃什么，<br/>我来帮你推荐健康食谱！</view>
+    </view>
+
+    <!-- 消息列表 -->
+    <view class="message-list" wx:if="{{messages.length > 0}}">
+      <block wx:for="{{messages}}" wx:key="index">
+        
+        <!-- AI 消息（左边） -->
+        <view class="message-item assistant" wx:if="{{item.role === 'assistant'}}">
+          <view class="message-avatar">
+            <text class="avatar-icon">🤖</text>
+          </view>
+          <view class="message-bubble assistant-bubble">
+            <text class="message-content">{{item.content}}</text>
+            <view class="record-btn" bindtap="recordMeal" data-content="{{item.content}}">📝 记录用餐</view>
+          </view>
+        </view>
+
+        <!-- 用户消息（右边） -->
+        <view class="message-item user" wx:else>
+          <view class="message-bubble user-bubble">
+            <text class="message-content">{{item.content}}</text>
+          </view>
+          <view class="message-avatar user-avatar">
+            <text class="avatar-icon">👤</text>
+          </view>
+        </view>
+
+      </block>
+      
+      <!-- 加载中提示 -->
+      <view class="loading-indicator" wx:if="{{isLoading}}">
+        <view class="message-avatar">
+          <text class="avatar-icon">🤖</text>
+        </view>
+        <view class="message-bubble assistant-bubble loading-bubble">
+          <view class="dot-typing">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 底部占位 -->
+      <view id="bottom" style="height: 20rpx;"></view>
+    </view>
+    
+  </scroll-view>
+
+  <!-- 底部输入区域（增加安全区域） -->
+  <view class="input-area" style="padding-bottom: {{safeBottomHeight + 10}}px;">
+    <view class="input-wrapper">
+      <input 
+        class="input-field" 
+        type="text"
+        placeholder="输入食材或需求..."
+        placeholder-class="input-placeholder"
+        value="{{inputText}}"
+        bindinput="onInput"
+        confirm-type="send"
+        bindconfirm="sendMessage"
+        adjust-position="{{true}}"
+      />
+      <view class="send-btn {{inputText ? 'active' : ''}}" bindtap="sendMessage">
+        <text class="send-icon">➤</text>
+      </view>
+    </view>
+    <view class="input-hint">
+      <text>试试："推荐低脂菜" / "鸡蛋和番茄" / "减肥期间吃什么"</text>
+    </view>
+  </view>
+</view>
+
+<!-- 快捷操作按钮 -->
+<view class="quick-actions" wx:if="{{messages.length === 1}}">
+  <view class="quick-btn" bindtap="recommendFromMenu">
+    <text>📋 推荐今日餐单</text>
+  </view>
+  <view class="quick-btn" bindtap="analyzeMeal">
+    <text>🔍 分析餐品组合</text>
+  </view>
+</view>

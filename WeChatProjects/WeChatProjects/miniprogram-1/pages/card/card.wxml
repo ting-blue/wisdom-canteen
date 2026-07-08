@@ -1,0 +1,34 @@
+<!--pages/card/card.wxml-->
+<view class="container">
+
+<!-- 已绑定状态 -->
+<block wx:if="{{isBound}}">
+  <view class="card-box">
+    <view class="card-chip">💳</view>
+    <text class="card-number">{{cardUid}}</text>
+    <view class="card-balance-row">
+      <text class="balance-label">余额</text>
+      <text class="balance-value">¥{{balance}}</text>
+    </view>
+  </view>
+
+  <view class="card-actions">
+    <button class="act-btn recharge" bindtap="onRecharge">💰 充值</button>
+    <button class="act-btn unbind" bindtap="onUnbind">解绑</button>
+  </view>
+</block>
+
+<!-- 未绑定状态 -->
+<block wx:else>
+  <view class="empty-box">
+    <text class="empty-icon">🪪</text>
+    <text class="empty-title">未绑定饭卡</text>
+    <text class="empty-desc">绑定后可充值、扫码支付</text>
+  </view>
+
+  <view class="bind-actions">
+    <button class="act-btn primary" bindtap="onBindManual">📝 手动绑定</button>
+  </view>
+</block>
+
+</view>

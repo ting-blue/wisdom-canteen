@@ -1,0 +1,62 @@
+<!--pages/my/my.wxml-->
+
+<block wx:if="{{userInfo==null}}">
+  <navigator class="login-area" url="/pages/login/login">
+    <view class="btn">一键登录</view>
+  </navigator>
+</block>
+<block wx:else>
+  <view class="container">
+    <view class="top-view">
+      <view class="user">
+        <view class="row">
+          <image class="avatar" src="{{userInfo.avatar}}"></image>
+          <view class="name">
+            <view bindtap="logout">{{userInfo.name}}</view>
+          </view>
+        </view>
+
+      </view>
+      <view class="numbers">
+        <view class="row">
+          <text>{{userInfo.score}}</text>
+          <text>积分</text>
+        </view>
+        <view class="row">
+          <text>55</text>
+          <text>其他</text>
+        </view>
+        <view class="row">
+          <text>77</text>
+          <text>其他</text>
+        </view>
+        <view class="row">
+          <text>56</text>
+          <text>其他</text>
+        </view>
+      </view>
+    </view>
+    <van-list>
+      <van-cell title="我的饭卡" icon="gold-coin-o"   is-link 
+      bind:click="gotoCard" />
+      <van-cell title="我的余额" icon="balance-o" is-link bind:click="gotoBalance" />
+      <van-cell title="我的菜单" icon="list-switch" is-link bind:click="gotoMyMeal" />
+      <van-cell title="分享应用" icon="share" is-link bind:click="onClick" />
+      <van-cell title="今日营养报告" icon="chart" is-link bind:click="gotoReport" />
+      <van-cell title="扫码支付" icon="scan" is-link bind:click="scanPay" />
+      <button class="contact-btn" open-type="contact" hover-class="none">
+        <van-cell title="联系客服" icon="phone" is-link />
+      </button>
+      <van-cell title="设置" icon="setting" is-link bind:click="gotoSettings" />
+    </van-list>
+  </view>
+</block>
+
+<!-- 分享面板 -->
+<van-share-sheet 
+  show="{{showShare}}" 
+  title="立即分享给好友"
+  options="{{options}}"
+  bind:select="onSelect"
+  bind:close="onClose"
+/>

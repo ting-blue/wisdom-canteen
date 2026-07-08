@@ -1,0 +1,148 @@
+/* pages/setting/setting.wxss */
+
+.container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20rpx;
+}
+
+/* 用户信息卡片 */
+.user-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 24rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 30rpx;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid #fff;
+}
+
+.avatar-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 60rpx 60rpx;
+  text-align: center;
+  font-size: 20rpx;
+  color: #fff;
+  padding: 8rpx 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.avatar-wrapper:hover .avatar-mask {
+  opacity: 1;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.nickname-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 10rpx;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.edit-icon {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8rpx;
+}
+
+.user-id {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 设置列表 */
+.settings-list {
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+  overflow: hidden;
+}
+
+.list-title {
+  font-size: 26rpx;
+  color: #999;
+  padding: 20rpx 30rpx;
+  background-color: #f8f8f8;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #eee;
+  background-color: #fff;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.item-icon {
+  font-size: 32rpx;
+}
+
+.item-label {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.item-value {
+  font-size: 26rpx;
+  color: #999;
+  margin-left: auto;
+  margin-right: 20rpx;
+}
+
+.item-arrow {
+  font-size: 36rpx;
+  color: #ccc;
+}
+
+/* 退出登录按钮 */
+.logout-btn {
+  background-color: #fff;
+  border-radius: 16rpx;
+  text-align: center;
+  padding: 30rpx;
+  margin-top: 40rpx;
+  margin-bottom: 60rpx;
+}
+
+.logout-btn text {
+  font-size: 32rpx;
+  color: #ff6b6b;
+}

@@ -1,0 +1,113 @@
+<!-- pages/balance/balance.wxml -->
+
+<view class="container">
+
+<!-- ===== 顶部余额卡片 ===== -->
+<view class="balance-card">
+  <view class="balance-header">
+    <text class="balance-label">我的余额</text>
+    <view class="balance-actions">
+      <text class="action-btn recharge-btn" bindtap="recharge">充值</text>
+      <text class="action-btn withdraw-btn" bindtap="withdraw">提现</text>
+    </view>
+  </view>
+  <view class="balance-amount">
+    <text class="currency">¥</text>
+    <text class="amount">{{balance}}</text>
+  </view>
+  
+  <!-- 统计信息（右上角） -->
+  <view class="stats-row">
+    <view class="stat-item">
+      <text class="stat-label">收入</text>
+      <text class="stat-value income">+¥{{totalIncome}}</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-label">支出</text>
+      <text class="stat-value expense">-¥{{totalExpense}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- ===== 标签筛选 ===== -->
+<view class="tab-bar">
+  <view 
+    class="tab-item {{selectedTab === 'all' ? 'active' : ''}}"
+    bindtap="onTabChange"
+    data-tab="all"
+  >
+    全部
+  </view>
+  <view 
+    class="tab-item {{selectedTab === 'income' ? 'active' : ''}}"
+    bindtap="onTabChange"
+    data-tab="income"
+  >
+    收入
+  </view>
+  <view 
+    class="tab-item {{selectedTab === 'expense' ? 'active' : ''}}"
+    bindtap="onTabChange"
+    data-tab="expense"
+  >
+    支出
+  </view>
+</view>
+
+<!-- ===== 账单列表 ===== -->
+<scroll-view class="bill-list" scroll-y enhanced show-scrollbar="{{false}}">
+  
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!isLoading && groupedBills.length === 0}}">
+    <text class="empty-icon">📭</text>
+    <text class="empty-text">暂无账单记录</text>
+  </view>
+
+  <!-- 按日期分组显示 -->
+  <block wx:for="{{groupedBills}}" wx:key="date" wx:for-item="group">
+    <view class="date-group">
+      
+      <!-- 日期标题 -->
+      <view class="date-header">
+        <text class="date-text">{{group.date}}</text>
+        <view class="date-stats">
+          <text class="day-income" wx:if="{{group.dayIncome > 0}}">+¥{{group.dayIncome.toFixed(2)}}</text>
+          <text class="day-expense" wx:if="{{group.dayExpense > 0}}">-¥{{group.dayExpense.toFixed(2)}}</text>
+        </view>
+      </view>
+
+      <!-- 该日期下的账单 -->
+      <view 
+        class="bill-item" 
+        wx:for="{{group.bills}}" 
+        wx:key="id" 
+        wx:for-item="bill"
+      >
+        <view class="bill-icon">
+          <text>{{bill.type === 'income' || bill.type === 'recharge' ? '💰' : '💳'}}</text>
+        </view>
+        <view class="bill-info">
+          <text class="bill-desc">{{bill.type_text || '刷卡'}}</text>
+  <text class="bill-desc-sub">{{bill.description || ''}}</text>
+          <text class="bill-time">{{bill.create_time || ''}}</text>
+        </view>
+        <view class="bill-amount {{bill.type === 'income' || bill.type === 'recharge' ? 'income' : 'expense'}}">
+          {{bill.type === 'income' || bill.type === 'recharge' ? '+' : '-'}}¥{{bill.amount}}
+        </view>
+      </view>
+      
+    </view>
+  </block>
+
+  <!-- 底部留白 -->
+  <view class="bottom-space"></view>
+
+</scroll-view>
+
+</view>

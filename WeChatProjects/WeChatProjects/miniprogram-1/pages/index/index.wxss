@@ -1,0 +1,88 @@
+/**index.wxss**/
+
+.tips{
+  /*背景色*/
+  background-color: #decaa0;
+  /*字大小*/
+  font-size: 30rpx;
+  /*字颜色*/
+  color: #c27708;
+  /*圆角效果*/
+  border-radius: 50rpx;
+  /*距离上下左右距离*/
+  margin: 10rpx 10rpx 30rpx 10rpx;
+  padding-left: 20rpx;
+}
+
+.icon{
+  padding-right: 20rpx;
+}
+
+.banners swiper {
+  height: 600rpx;  /* 根据你的图片比例调整，常用 300-500rpx */
+}
+
+.banners image {
+  width: 100%;
+  height: 100%;
+}
+
+/*flex布局*/
+.menu{
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx;
+  border-radius: 10rpx;
+  flex-wrap: wrap;
+}
+
+.item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  height: 200rpx;
+  border: rgb(192, 251, 255)solid 1rpx;
+  margin: 1rpx;
+  background-color: powderblue;
+}
+
+.img{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 10rpx;
+}
+
+.title{
+  margin-top: 12rpx;
+  font-size: 24rpx;
+}
+
+/* 控制整个网格项的内容区域 */
+.van-grid-item__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20rpx;
+}
+
+.custom-icon {
+  width: 150rpx;
+  height: 150rpx;
+  border: rgb(192, 251, 255) solid 1rpx;
+  background-color: powderblue;
+  border-radius: 20rpx;
+  margin-top: 100rpx; 
+}
+
+/* 让文字整体下移 */
+.van-grid-item__text {
+  margin-top: 100rpx !important;
+}
+
+.custom-text {
+  font-size: 28rpx;
+  text-align: center;
+}
